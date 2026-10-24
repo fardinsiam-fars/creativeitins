@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Film & Media | Homework Portal</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#"><img id="siteLogo" src="assets/logo.svg" alt="Logo"><span><b id="brandName">FILM & MEDIA</b><small>HOMEWORK PORTAL</small></span></a><button id="signOut" class="ghost hidden">Sign out</button></header>
+<main>
+<section id="welcomeView" class="hero view">
+ <div class="hero-copy"><span class="eyebrow">LEARN • CREATE • EDIT</span><h1>Your classwork.<br><em>All in one place.</em></h1><p>Sign in to view lessons and submit your homework.</p>
+ <div class="login-card"><div class="auth-tabs"><button class="tab active" data-auth="signin">Sign in</button><button class="tab" data-auth="signup">Student account</button></div>
+ <form id="authForm"><label for="email">Email</label><input id="email" type="email" required placeholder="you@example.com">
+<label for="password">Password</label>
+<input id="password" type="password" minlength="6" required placeholder="At least 6 characters">
+<p style="text-align:right;margin:6px 0 14px">
+  <a href="#" id="forgotPassword">Forgot password?</a>
+</p>
+<div id="signupFields" class="hidden"><label for="batchCode">Batch code</label><input id="batchCode" placeholder="e.g. PVE 2606"><label for="studentName">Full name</label><input id="studentName" placeholder="Your full name"></div><button class="primary full" id="authSubmit" type="submit">Sign in →</button><p id="authError" class="error" aria-live="polite"></p></form>
+ <p class="micro-note">Student accounts require email confirmation if enabled in Supabase.</p></div></div>
+ <div class="hero-art"><div class="art-glow"></div><div class="art-card card-back"><span>CLASS</span><strong>29</strong><small>LESSONS</small></div><div class="art-card card-front"><div class="play-icon">▶</div><span>YOUR CREATIVE JOURNEY</span><strong>Starts here.</strong><div class="art-line"></div><small>FILM · MEDIA · EDITING</small></div><div class="art-stamp">MAKE<br>IT<br>MATTER.</div></div>
+</section>
+<section id="recoveryView" class="view hidden"><div class="login-card recovery-card"><span class="eyebrow">ACCOUNT RECOVERY</span><h1 class="recovery-title">Set a new <em>password.</em></h1><p>Choose a new password for your account.</p><form id="recoveryForm"><label for="newPassword">New password</label><input id="newPassword" type="password" minlength="8" required autocomplete="new-password" placeholder="At least 8 characters"><label for="confirmNewPassword">Confirm new password</label><input id="confirmNewPassword" type="password" minlength="8" required autocomplete="new-password" placeholder="Enter it again"><button class="primary full" type="submit">Save new password →</button><p id="recoveryError" class="error" aria-live="polite"></p></form></div></section>
+<section id="studentView" class="view hidden"><div class="section-head"><div><span class="eyebrow">STUDENT SPACE</span><h1 id="studentHeading">Your homework</h1><p id="studentSub"></p></div></div><div id="studentLessons" class="lesson-grid"></div></section>
+<section id="lessonView" class="view hidden"><button id="backToLessons" class="ghost">← All classes</button><article id="lessonContent" class="lesson-detail"></article></section>
+<section id="teacherView" class="view hidden"><div class="section-head"><div><span class="eyebrow">TEACHER WORKSPACE</span><h1>Manage the <em>portal.</em></h1><p>Changes are shared across devices.</p></div></div><div class="teacher-tabs"><button class="tab active" data-tab="batches">Batches</button><button class="tab" data-tab="lessons">Homework library</button><button class="tab" data-tab="submissions">Submissions</button></div>
+<div id="batchesPanel" class="panel"><div class="panel-title"><h2>Batch management</h2></div><form id="createFolderForm" class="inline-form"><div><label>Folder name</label><input id="newFolderName" required maxlength="80" placeholder="e.g. Premiere Pro — October 2026"></div><button class="primary">+ Create folder</button></form><div id="batchList" class="data-list"></div></div>
+<div id="lessonsPanel" class="panel hidden"><div class="panel-title"><h2>Homework library</h2><button id="newLesson" class="primary">+ New class</button></div><form id="lessonForm" class="editor hidden"><input id="lessonId" type="hidden"><div class="form-grid"><div><label>Class number (1–29)</label><input id="lessonNumber" type="number" min="1" max="29" required></div><div><label>Title</label><input id="lessonTitle" required></div></div><label>Summary</label><input id="lessonSummary"><label>Instructions</label><textarea id="lessonBody" rows="5"></textarea><label>Resource links (one URL per line)</label><textarea id="lessonLinks" rows="2"></textarea><p class="micro-note">Deadlines are set separately for each class assignment inside a batch.</p><div class="form-actions"><button type="button" id="cancelLesson" class="ghost">Cancel</button><button class="primary">Save class</button></div></form><div id="homeworkList" class="data-list"></div></div>
+<div id="submissionsPanel" class="panel hidden"><div class="panel-title"><h2>Student submissions</h2><button id="refreshSubmissions" class="ghost">Refresh</button></div><div id="submissionList" class="data-list"></div></div>
+<div class="notice">First-time setup: follow README.md and run supabase/setup.sql. The database enforces the 50-student limit, one submission per class per student, and deadlines.</div>
+</section>
+</main><footer><span>© <span id="year"></span> <b>FILM & MEDIA</b></span><span>Built for learning, made for creators.</span></footer><div id="toast" class="toast" role="status"></div>
+<script src="js/config.js"></script><script src="js/app.js"></script>
+</body></html>
